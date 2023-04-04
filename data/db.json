@@ -1,0 +1,142 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "product": "TV Remote",
+      "price": 500,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2022/3/GG/OP/VS/66697248/amozon-fire-stick-500x500.jpg",
+      "count": 1
+    },
+    {
+      "id": 2,
+      "product": "MI PowerBank",
+      "price": 1500,
+      "image": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31grUs8OpvL._US450_SCLZZZZZZZ_.jpg",
+      "count": 1
+    },
+    {
+      "id": 3,
+      "product": "Speaker",
+      "price": 1999,
+      "image": "https://w7.pngwing.com/pngs/369/911/png-transparent-amazon-alexa-google-assistant-google-home-toralarm-gmbh-asistente-persoal-intelixente-amazon-alexa-multimedia-memento-google-search-thumbnail.png",
+      "count": 1
+    },
+    {
+      "id": 4,
+      "product": "Projector",
+      "price": 2500,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfkboLFp3kiEsW0NiJkRmp4oHD1vp_okpNaA&usqp=CAU",
+      "count": 1
+    },
+    {
+      "id": 5,
+      "product": "Sony Speaker",
+      "price": 999,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSkpcUZ17fTBtMLR_B6UfMtL6ClAzVu1hpMw&usqp=CAU",
+      "count": 1
+    },
+    {
+      "id": 6,
+      "product": "HeadPhone",
+      "price": 1250,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsoYsA5dQEJo-vLqIr3oxboBUf2Z1so4yW-gPOwS2xEmgaSfQZ5R3zRfczqbnbuds66pk&usqp=CAU",
+      "count": 1
+    }
+  ],
+  "checkOut": [
+    {
+      "id": 1,
+      "product": "TV Remote",
+      "price": 500,
+      "image": "https://5.imimg.com/data5/SELLER/Default/2022/3/GG/OP/VS/66697248/amozon-fire-stick-500x500.jpg",
+      "count": 1
+    },
+    [
+      {
+        "TOTAL PRODUCT": 9,
+        "CheckOut Date&Time": "2023-04-03T05:53:15.374Z"
+      },
+      {
+        "id": 3,
+        "product": "Speaker",
+        "price": 1999,
+        "image": "https://w7.pngwing.com/pngs/369/911/png-transparent-amazon-alexa-google-assistant-google-home-toralarm-gmbh-asistente-persoal-intelixente-amazon-alexa-multimedia-memento-google-search-thumbnail.png",
+        "count": 2
+      },
+      {
+        "id": 4,
+        "product": "Projector",
+        "price": 2500,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfkboLFp3kiEsW0NiJkRmp4oHD1vp_okpNaA&usqp=CAU",
+        "count": 4
+      },
+      {
+        "id": 5,
+        "product": "Random Product",
+        "price": 999,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSkpcUZ17fTBtMLR_B6UfMtL6ClAzVu1hpMw&usqp=CAU",
+        "count": 3
+      }
+    ],
+    [
+      {
+        "TOTAL PRODUCT": 5,
+        "CheckOut Date&Time": "2023-04-03T05:54:36.279Z"
+      },
+      {
+        "id": 3,
+        "product": "Speaker",
+        "price": 1999,
+        "image": "https://w7.pngwing.com/pngs/369/911/png-transparent-amazon-alexa-google-assistant-google-home-toralarm-gmbh-asistente-persoal-intelixente-amazon-alexa-multimedia-memento-google-search-thumbnail.png",
+        "count": 3
+      },
+      {
+        "id": 5,
+        "product": "Random Product",
+        "price": 999,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSkpcUZ17fTBtMLR_B6UfMtL6ClAzVu1hpMw&usqp=CAU",
+        "count": 2
+      }
+    ],
+    [
+      {
+        "TOTAL PRODUCT": 6,
+        "CheckOut Date&Time": "2023-04-04T19:08:15.191Z"
+      },
+      {
+        "id": 1,
+        "product": "TV Remote",
+        "price": 500,
+        "image": "https://5.imimg.com/data5/SELLER/Default/2022/3/GG/OP/VS/66697248/amozon-fire-stick-500x500.jpg",
+        "count": 3
+      },
+      {
+        "id": 4,
+        "product": "Projector",
+        "price": 2500,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfkboLFp3kiEsW0NiJkRmp4oHD1vp_okpNaA&usqp=CAU",
+        "count": 3
+      }
+    ],
+    [
+      {
+        "TOTAL PRODUCT": 4,
+        "CheckOut Date&Time": "2023-04-04T20:44:05.123Z"
+      },
+      {
+        "id": 2,
+        "product": "MI PowerBank",
+        "price": 1500,
+        "image": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/31grUs8OpvL._US450_SCLZZZZZZZ_.jpg",
+        "count": 2
+      },
+      {
+        "id": 3,
+        "product": "Speaker",
+        "price": 1999,
+        "image": "https://w7.pngwing.com/pngs/369/911/png-transparent-amazon-alexa-google-assistant-google-home-toralarm-gmbh-asistente-persoal-intelixente-amazon-alexa-multimedia-memento-google-search-thumbnail.png",
+        "count": 2
+      }
+    ]
+  ]
+}
