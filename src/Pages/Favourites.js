@@ -1,28 +1,27 @@
 import { useSelector, useDispatch } from "react-redux";
-import { wishListRemoved } from "../eCommerceStore";
+import { RemoveFavourite } from "../eCommerceStore";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 
-const WishList = () => {
-  const { wishList } = useSelector((state) => state.cart);
+const Favourites = () => {
+  const { favourites } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleRemoveFromWishList = (item) => {
-    dispatch(wishListRemoved(item.id));
+  const RemoveFromfav = (item) => {
+    dispatch(RemoveFavourite(item.id));
   };
 
   const handleNavigate = () => {
-    navigate("/products");
+    navigate("/");
   };
 
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ mt: "2rem", padding: "2rem" }}>
         <Button onClick={handleNavigate} variant="contained">
-          Product Page
+          Go to Main page
         </Button>
       </Box>
       <Box
@@ -33,7 +32,7 @@ const WishList = () => {
           justifyContent: "center",
         }}
       >
-        <h2>WishList Products</h2>
+        <h2>See Your Favourite Items</h2>
       </Box>
       <Box
         sx={{
@@ -43,8 +42,8 @@ const WishList = () => {
           padding: "2rem",
         }}
       >
-        {wishList?.map((item) => (
-          <Box item key={`wishlist-item-${item.id}`}>
+        {favourites?.map((item) => (
+          <Box item key={`Favourite-item-${item.id}`}>
             <Box
               sx={{
                 border: "1px solid #cdcdcd",
@@ -55,14 +54,14 @@ const WishList = () => {
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <img
-                className="productImage"
+                className="picture"
                 style={{ height: "200px", width: "200px" }}
                 src={item.image}
                 alt={item.title}
               />
               <p>₹ {item.price}</p>
-              <Button onClick={() => handleRemoveFromWishList(item)}>
-                Remove from Wishlist
+              <Button onClick={() => RemoveFromfav(item)}>
+                Remove from Favourite
               </Button>
             </Box>
           </Box>
@@ -72,4 +71,4 @@ const WishList = () => {
   );
 };
 
-export default WishList;
+export default Favourites;

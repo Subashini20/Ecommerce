@@ -36,56 +36,20 @@
     transform: rotate(360deg);
   }
 }
-.productImage{
-
+.picture{
   height: 20px;
   width: 40px;
 }
 
-.shopContainer{
-  background-color: rgb(222, 224, 228);
-  text-align: center;
- 
-}
-.productContainer{
+.productBlock{
   margin-top: 0%;
   background-color: rgb(246, 248, 250);
   text-align: center;
 }
-
-.checkOutButtonsDIV{
-  text-align: center;
- 
-  
+.MuiPaper-elevation {
+  padding: 10px !important;
+  box-shadow: 5px 5px #d7d5d5 !important;
 }
-
-.checkOutButton{
-  background-color: rgb(185, 222, 236);
-  font-size: 20px;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-  border-radius: 6px;
-  color: rgb(23, 104, 97);
-}
-.clearButton{
-  background-color: rgb(177, 163, 163);
-  font-size: 20px;
-  box-shadow: 0 12px 16px 0 rgba(14, 12, 12, 0.24), 0 17px 50px 0 rgba(17, 3, 3, 0.19);
-  border-radius: 6px;
-  color: rgb(70, 95, 117);
-}
-
-.plusButton{
-  border-radius: 6px;
-  background-color: rgb(190, 218, 219);
-}
-.minusButton{
-  border-radius: 6px;
-  background-color: rgb(204, 205, 206);
-}
-
-.ProductText{
-  color: rgb(47, 58, 54);
-}
-.cartPagetext{
-  color: rgb(47, 58, 54);
+button {
+  padding: 0 6px !important;
 }

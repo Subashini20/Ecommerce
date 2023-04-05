@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ProductApi from "../services/apiCall";
 import {
-  productCountIncreased,
-  productCountDecreased,
-  productRemoved,
-  cartCleared,
-  totalCountAdded,
-  totalCountCleared,
+  IncrementProduct,
+  DecrementProduct,
+  RemoveProduct,
+  ClearCart,
+  IncreaseTotalCount,
+  ClearTotalCount,
 } from "./../eCommerceStore";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
@@ -29,7 +28,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
+import "../App.css"
+import { useNavigate } from "react-router-dom";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -77,41 +77,33 @@ const CartPage = ({ open, close }) => {
     totalCount: storeObj.cart?.totalCount,
   }));
 
-  const handleRemove = (count, itemIndex) => {
-    dispatch(productRemoved({ count, itemIndex }));
+  const RemoveProduct = (count, itemIndex) => {
+    dispatch(RemoveProduct({ count, itemIndex }));
   };
 
-  const handleUpdate = (item) => {
-    dispatch(productCountIncreased(item.id));
+  const handleIncrement = (item) => {
+    dispatch(IncrementProduct(item.id));
   };
 
-  const handleMinus = (item) => {
-    dispatch(productCountDecreased(item.id));
+  const handleDecrement = (item) => {
+    dispatch(DecrementProduct(item.id));
   };
 
-  const handleClear = () => {
-    dispatch(cartCleared());
-    dispatch(totalCountCleared());
+  const ClearFromCart = () => {
+    dispatch(ClearCart());
+    dispatch(ClearTotalCount());
   };
 
-  const handleCheckOut = () => {
-    const currentdate = new Date();
-    const checkOutData = [
-      { "TOTAL PRODUCT": totalCount, "CheckOut Date&Time": currentdate },
-      ...data,
-    ];
-    ProductApi.post("/checkOut", checkOutData)
-      .then(() => {
-        alert("Successfully checked out Products. Thank you for your Order.");
-        dispatch(cartCleared());
-        dispatch(totalCountCleared());
-      })
-      .catch((err) => console.log("Error from api", err));
+  const BuyNow = () => {
+        alert("Thanks you for your Order. Visit again!!");
+        dispatch(ClearCart());
+        dispatch(ClearTotalCount());
+      
   };
 
-  const handleInput = (e, index) => {
+  const handleChange = (e, index) => {
     const count = parseInt(e.target.value);
-    dispatch(totalCountAdded({ count, index }));
+    dispatch(IncreaseTotalCount({ count, index }));
   };
 
   return (
@@ -122,9 +114,9 @@ const CartPage = ({ open, close }) => {
         open={open}
         fullScreen
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={close}>
+        {/* <BootstrapDialogTitle id="customized-dialog-title"  onClose={close}>
           Modal title
-        </BootstrapDialogTitle>
+        </BootstrapDialogTitle> */}
         <DialogContent dividers>
           <TableContainer component={Paper}>
             <h1 style={{ textAlign: "center" }}>Cart Page</h1>
@@ -170,7 +162,7 @@ const CartPage = ({ open, close }) => {
                         <Button
                           className="minusButton"
                           disabled={item.count == 1 ? "true" : false}
-                          onClick={() => handleMinus(item)}
+                          onClick={() => handleDecrement(item)}
                           style={{ padding: 4, fontSize: 20 }}
                         >
                           -
@@ -178,7 +170,7 @@ const CartPage = ({ open, close }) => {
                         <span>
                           <input
                             type="number"
-                            onChange={(e) => handleInput(e, index)}
+                            onChange={(e) => handleChange(e, index)}
                             value={item.count || 1}
                             style={{
                               padding: 8,
@@ -191,7 +183,7 @@ const CartPage = ({ open, close }) => {
                         <Button
                           className="plusButton"
                           disabled={totalCount >= 100 ? "true" : false}
-                          onClick={() => handleUpdate(item)}
+                          onClick={() => handleIncrement(item)}
                           style={{ padding: 4, fontSize: 20 }}
                         >
                           +
@@ -199,7 +191,7 @@ const CartPage = ({ open, close }) => {
                       </div>
                     </TableCell>
                     <TableCell>
-                      <Button onClick={() => handleRemove(item.count, index)}>
+                      <Button onClick={() => RemoveProduct(item.count, index)}>
                         <DeleteIcon />
                       </Button>
                     </TableCell>
@@ -212,11 +204,11 @@ const CartPage = ({ open, close }) => {
         <DialogActions>
         {data.length > 0 ? (
           <Box sx={{ display: "flex",gap:"2rem" }}>
-            <Button onClick={handleCheckOut} variant="contained">
-              Check Out
+            <Button onClick={BuyNow} variant="contained">
+              Buy now
             </Button>
             <Button
-              onClick={handleClear}
+              onClick={ClearFromCart}
               variant="outlined"
               startIcon={<DeleteIcon />}
             >

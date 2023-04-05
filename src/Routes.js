@@ -1,13 +1,13 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import React from "react";
-import WishList from "./Pages/WishList";
+import Favourites from "./Pages/Favourites";
 import Products from "./Pages/Products";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/wishlist" element={<WishList />}></Route>
-      <Route path="/products" element={<Products />}></Route>
+      <Route path="/AddtoFavourites" element={<Favourites />}></Route>
+      <Route path="/" element={<Products />}></Route>
     </Routes>
   );
 };

@@ -1,25 +1,54 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-
+import apiCall from './services/apiCall';
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     cartProducts: [],
-    wishList: [],
+    favourites: [],
     totalCount: 0,
   },
   reducers: {
-    productAdded: (state, action) => {
-      state.cartProducts.push(action.payload);
-      state.totalCount += 1;
+    AddToFavourite: (state, action) => {
+      state.favourites.push(action.payload);
     },
-    productCountIncreased: (state, action) => {
+    ClearTotalCount: (state) => {
+      state.totalCount = 0;
+    },
+    RemoveFavourite: (state, action) => {
+      state.favourites = state.favourites.filter((item) => item.id !== action.payload);
+    },
+
+    AddToCart: (state, action) => {
+      state.totalCount += 1;
+      state.cartProducts.push(action.payload);
+      const addProduct = {
+        id: action.payload.id,
+        name:action.payload.product,
+        price: action.payload.price,
+       }
+       apiCall.post("/cart",JSON.stringify(addProduct),{
+        headers: {
+          "Content-Type" : "application/json"
+        }
+       })
+    },
+    RemoveProduct: (state, action) => {
+      const { itemIndex, count } = action.payload;
+      state.cartProducts.splice(itemIndex, 1);
+      state.totalCount -= count;
+    },
+    ClearCart: (state) => {
+      state.cartProducts = [];
+      state.totalCount = 0;
+    },
+    IncrementProduct: (state, action) => {
       const product = state.cartProducts.find((p) => p.id === action.payload);
       if (product) {
         product.count += 1;
         state.totalCount += 1;
       }
     },
-    productCountDecreased: (state, action) => {
+    DecrementProduct: (state, action) => {
       const product = state.cartProducts.find((p) => p.id === action.payload);
       if (product) {
         if (product.count > 1) {
@@ -28,16 +57,7 @@ const cartSlice = createSlice({
         }
       }
     },
-    productRemoved: (state, action) => {
-      const { itemIndex, count } = action.payload;
-      state.cartProducts.splice(itemIndex, 1);
-      state.totalCount -= count;
-    },
-    cartCleared: (state) => {
-      state.cartProducts = [];
-      state.totalCount = 0;
-    },
-    totalCountAdded: (state, action) => {
+    IncreaseTotalCount: (state, action) => {
       const { index, count } = action.payload;
       const product = state.cartProducts[index];
       if (product) {
@@ -46,28 +66,20 @@ const cartSlice = createSlice({
         state.totalCount += count;
       }
     },
-    wishListAdded: (state, action) => {
-      state.wishList.push(action.payload);
-    },
-    totalCountCleared: (state) => {
-      state.totalCount = 0;
-    },
-    wishListRemoved: (state, action) => {
-      state.wishList = state.wishList.filter((item) => item.id !== action.payload);
-    },
+    
   },
 });
 
 export const {
-  productAdded,
-  productCountIncreased,
-  productCountDecreased,
-  productRemoved,
-  cartCleared,
-  totalCountAdded,
-  wishListAdded,
-  totalCountCleared,
-  wishListRemoved,
+  AddToCart,
+  IncrementProduct,
+  DecrementProduct,
+  RemoveProduct,
+  ClearCart,
+  IncreaseTotalCount,
+  AddToFavourite,
+  ClearTotalCount,
+  RemoveFavourite,
 } = cartSlice.actions;
 
 const store = configureStore({

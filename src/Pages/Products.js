@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import ProductApi from "../services/apiCall";
 import {
-  productAdded,
-  productCountIncreased,
-  wishListAdded,
-  wishListRemoved,
+  AddToCart,
+  IncrementProduct,
+  AddToFavourite,
+  RemoveFavourite,
 } from "../eCommerceStore";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -19,12 +19,10 @@ import Typography from "@mui/material/Typography";
 import CartPage from "./CartPage";
 
 const Products = () => {
-  const theme = useTheme();
   const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
   const { cartProducts } = useSelector((state) => state.cart);
-  const { wishList } = useSelector((state) => state.cart);
-  const { totalCount } = useSelector((state) => state.cart);
+  const { favourites } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -46,32 +44,31 @@ const Products = () => {
     setOpen(false);
   };
 
-  const handleClick = (productItem) => {
+  const PushtoCart = (productItem) => {
     const isContain = cartProducts.some((prod) => {
       return prod.id == productItem.id;
     });
     if (isContain) {
-      dispatch(productCountIncreased(productItem.id));
+      dispatch(IncrementProduct(productItem.id));
     } else {
-      dispatch(productAdded(productItem));
+      dispatch(AddToCart(productItem));
     }
   };
 
-  const handleAddWishList = (item) => {
-    dispatch(wishListAdded(item));
-    console.log("wishList", wishList);
-    // console.log('cart',cart)
+  const AddToFav = (item) => {
+    dispatch(AddToFavourite(item));
+    console.log("fav", favourites);
   };
   const hanldeNavigate = () => {
-    navigate("/wishlist");
+    navigate("/AddtoFavourites");
   };
 
-  const handleRemoveWishlist = (item) => {
-    dispatch(wishListRemoved(item));
+  const RemoveFromfavourite = (item) => {
+    dispatch(RemoveFavourite(item));
   };
 
   return (
-    <div className="productContainer" style={{ width: "100%" }}>
+    <div className="productBlock" style={{ width: "100%" }}>
       <Box
         sx={{
           display: "flex",
@@ -80,13 +77,13 @@ const Products = () => {
           alignItems: "center",
         }}
       >
-        <h1 className="ProductText">Products</h1>
+        <h1 className="Productname">Welcome to Online Shopping</h1>
         <Box sx={{ display: "flex", gap: "2rem" }}>
-          <Button onClick={hanldeNavigate} variant="contained">
-            Wish List
+          <Button onClick={hanldeNavigate} variant="contained" style={{textDecoration: "capitalize !important"}}>
+            Go to Favourites page
           </Button>
           <Button onClick={handleClickOpen} variant="contained">
-            Cart
+          Move to Cart
           </Button>
         </Box>
       </Box>
@@ -142,26 +139,26 @@ const Products = () => {
                   >
                     <Button
                       variant="contained"
-                      onClick={() => handleClick(item)}
+                      onClick={() => PushtoCart(item)}
                     >
                       Add to cart
                     </Button>
-                    {wishList.some((element) => element.id === item.id) ? (
+                    {favourites.some((element) => element.id === item.id) ? (
                       <Button
                         variant="outlined"
-                        onClick={() => handleRemoveWishlist(item.id)}
+                        onClick={() => RemoveFromfavourite(item.id)}
                       >
-                        Remove from Wishlist
+                        Remove from Favourite
                       </Button>
                     ) : (
                       <Button
                         variant="outlined"
-                        onClick={() => handleAddWishList(item)}
+                        onClick={() => AddToFav(item)}
                       >
-                        Add to Wishlist
+                        Add to Favourite
                       </Button>
                     )}
-                    {/* <Button variant="outlined" onClick={wishList.find(element => element.id == item.id) ? }>Add to cart</Button>  */}
+                    
                   </Box>
                 </Box>
                 <CardMedia
